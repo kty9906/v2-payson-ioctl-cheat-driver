@@ -1,21 +1,27 @@
 name: Build Driver
-on: [push, pull_request] # 코드를 올릴 때마다 자동 빌드
+on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: windows-latest # 최신 윈도우 환경 사용
+    runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4 # v3에서 v4로 업데이트
 
       - name: Add MSBuild to PATH
-        uses: microsoft/setup-msbuild@v1.1
+        uses: microsoft/setup-msbuild@v2 # v1.1에서 v2로 업데이트
 
       - name: Build Driver
         run: |
+          # 솔루션 파일(.sln) 이름을 실제 본인의 파일명으로 수정하세요
           msbuild YourProject.sln /p:Configuration=Release /p:Platform=x64
 
       - name: Upload Result
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4 # 문제의 v3를 v4로 업데이트
         with:
           name: Driver-Binary
-          path: x64/Release/*.sys # 빌드된 .sys 파일 업로드
+          # 빌드 경로가 다를 수 있으니 확인이 필요합니다 (보통 x64/Release/)
+          path: |
+            x64/Release/*.sys
+            x64/Release/*.inf
+            x64/Release/*.pdb
