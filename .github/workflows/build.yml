@@ -14,7 +14,7 @@ jobs:
       - name: Build Driver
         run: |
           # 솔루션 파일(.sln) 이름을 실제 본인의 파일명으로 수정하세요
-          msbuild YourProject.sln /p:Configuration=Release /p:Platform=x64
+          msbuild Payson IOCTL.sln /p:Configuration=Release /p:Platform=x64
 
       - name: Upload Result
         uses: actions/upload-artifact@v4 # 문제의 v3를 v4로 업데이트
