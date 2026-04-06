@@ -1,0 +1,21 @@
+name: Build Driver
+on: [push, pull_request] # 코드를 올릴 때마다 자동 빌드
+
+jobs:
+  build:
+    runs-on: windows-latest # 최신 윈도우 환경 사용
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Build Driver
+        run: |
+          msbuild YourProject.sln /p:Configuration=Release /p:Platform=x64
+
+      - name: Upload Result
+        uses: actions/upload-artifact@v3
+        with:
+          name: Driver-Binary
+          path: x64/Release/*.sys # 빌드된 .sys 파일 업로드
