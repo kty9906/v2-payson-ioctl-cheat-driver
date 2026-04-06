@@ -25,3 +25,6 @@ jobs:
             x64/Release/*.sys
             x64/Release/*.inf
             x64/Release/*.pdb
+            
+- name: Set git safe directory
+  run: git config --global --add safe.directory /github/workspace
