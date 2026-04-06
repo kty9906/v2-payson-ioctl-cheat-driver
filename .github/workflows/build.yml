@@ -18,7 +18,7 @@ jobs:
 
       - name: Fix Git Safe Directory
         # 가상 환경 내 보안 정책으로 인한 Git 오류 방지
-        run: git config --global --add safe.directory /github/workspace
+        run: git config --global --add safe.directory .github/workflows
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
